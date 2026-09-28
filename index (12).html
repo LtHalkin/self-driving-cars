@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autonomous Driving City Simulation</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+    <header id="topbar">
+        <div class="brand">🚗 <span>Neuro City</span><span class="tagline">self-driving cars learn to navigate a generated city</span></div>
+        <div class="top-stats">
+            <div class="stat"><label>Generation</label><span id="statGen">1</span></div>
+            <div class="stat"><label>Alive</label><span id="statAlive">0 / 0</span></div>
+            <div class="stat"><label>Best Distance</label><span id="statBestDist">0</span></div>
+            <div class="stat"><label>Best Fitness</label><span id="statBestFit">0</span></div>
+            <div class="stat"><label>Avg Fitness</label><span id="statAvgFit">0</span></div>
+            <div class="stat"><label>FPS</label><span id="statFps">60</span></div>
+        </div>
+    </header>
+
+    <div id="main">
+        <canvas id="worldCanvas"></canvas>
+
+        <div id="minimapWrap">
+            <canvas id="minimapCanvas" width="220" height="180"></canvas>
+        </div>
+
+        <button id="btnResetCam" class="camera-reset" title="Reset camera">⟲ Camera</button>
+
+        <aside id="sidebar">
+            <section class="panel">
+                <h2>Controls</h2>
+                <div class="btn-row">
+                    <button id="btnStart" class="primary">▶ Start</button>
+                    <button id="btnPause">⏸ Pause</button>
+                </div>
+                <div class="btn-row">
+                    <button id="btnNextGen">⏭ Next Generation</button>
+                    <button id="btnReset">↻ Reset Simulation</button>
+                </div>
+
+                <label class="field">
+                    <span>Cars</span>
+                    <input type="number" id="carsInput" value="60" min="4" max="300">
+                </label>
+
+                <div class="field">
+                    <span>Simulation Speed</span>
+                    <div class="speed-row">
+                        <button class="speed-btn active" data-speed="1">1x</button>
+                        <button class="speed-btn" data-speed="2">2x</button>
+                        <button class="speed-btn" data-speed="5">5x</button>
+                        <button class="speed-btn" data-speed="10">10x</button>
+                        <button class="speed-btn" data-speed="50">50x</button>
+                    </div>
+                </div>
+
+                <div class="checkbox-list">
+                    <label><input type="checkbox" id="cbSensors" checked> Show Sensors</label>
+                    <label><input type="checkbox" id="cbNN" checked> Show Neural Network</label>
+                    <label><input type="checkbox" id="cbCheckpoints"> Show Checkpoints</label>
+                    <label><input type="checkbox" id="cbDebug" checked> Show Debug Info</label>
+                    <label><input type="checkbox" id="cbBorders"> Show Road Boundaries</label>
+                    <label><input type="checkbox" id="cbNight"> Night Mode</label>
+                </div>
+
+                <div class="btn-row">
+                    <button id="btnSave">💾 Save Best</button>
+                    <button id="btnLoad">📂 Load Best</button>
+                </div>
+                <div class="btn-row">
+                    <button id="btnResetTraining" class="danger">🗑 Reset Training</button>
+                </div>
+            </section>
+
+            <section class="panel" id="carInfoPanel">
+                <p class="muted">Click a car to inspect it.</p>
+            </section>
+
+            <section class="panel">
+                <h2>Neural Network</h2>
+                <canvas id="nnCanvas" width="280" height="220"></canvas>
+            </section>
+        </aside>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
